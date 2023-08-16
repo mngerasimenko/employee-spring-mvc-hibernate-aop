@@ -5,5 +5,7 @@ import ru.mngerasimenko.employee.entity.Employee;
 import java.util.List;
 
 public interface EmployeeDAO {
-    List<Employee> getAllEmployees();
+    List<Employee> getAll();
+
+    void save(Employee employee);
 }

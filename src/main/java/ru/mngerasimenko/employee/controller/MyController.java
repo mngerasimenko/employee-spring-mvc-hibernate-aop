@@ -4,6 +4,7 @@ package ru.mngerasimenko.employee.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.mngerasimenko.employee.entity.Employee;
 import ru.mngerasimenko.employee.service.EmployeeService;
@@ -22,9 +23,24 @@ public class MyController {
 
     @RequestMapping("/")
     public String showAllEmployees(Model model) {
-        List<Employee> allEmployees = employeeService.getAllEmployees();
+        List<Employee> allEmployees = employeeService.getAll();
         model.addAttribute("allEmps", allEmployees);
 
-        return "all_employees";
+        return "allEmployees";
+    }
+
+    @RequestMapping("/addNewEmployee")
+    public String addNewEmployee(Model model) {
+        Employee employee = new Employee();
+        model.addAttribute("employee", employee);
+
+        return "employeeInfo";
+    }
+
+    @RequestMapping("/saveEmployee")
+    public String saveEmployee(@ModelAttribute("employee") Employee employee) {
+        employeeService.save(employee);
+
+        return "redirect:/";
     }
 }
