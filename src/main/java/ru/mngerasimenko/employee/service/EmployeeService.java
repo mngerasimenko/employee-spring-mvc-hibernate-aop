@@ -9,4 +9,5 @@ public interface EmployeeService {
     List<Employee> getAll();
     void save(Employee employee);
 
+    Employee getById(int id);
 }
