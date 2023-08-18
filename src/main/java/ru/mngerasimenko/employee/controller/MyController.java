@@ -49,6 +49,14 @@ public class MyController {
     public String updateEmployee(@RequestParam("empId") int id, Model model) {
         Employee employee = employeeService.getById(id);
         model.addAttribute("employee", employee);
+
         return "employeeInfo";
+    }
+
+    @RequestMapping("/deleteEmployee")
+    public String deleteEmployee(@RequestParam("empId") int id) {
+        employeeService.delete(id);
+
+        return "redirect:/";
     }
 }

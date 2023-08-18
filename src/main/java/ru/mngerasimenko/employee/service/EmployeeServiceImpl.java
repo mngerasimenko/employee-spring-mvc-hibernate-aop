@@ -35,4 +35,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee getById(int id) {
         return employeeDAO.getById(id);
     }
+
+    @Override
+    @Transactional
+    public void delete(int id) {
+        employeeDAO.delete(id);
+    }
 }
